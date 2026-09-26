@@ -1,0 +1,1 @@
+package com.mannvaasam.repo; import com.mannvaasam.model.*; import org.springframework.data.jpa.repository.*; import org.springframework.data.domain.*; public interface ProductRepository extends JpaRepository<Product,Long>{Page<Product> findByActiveTrue(Pageable pageable);}
