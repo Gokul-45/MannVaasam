@@ -1,0 +1,3 @@
+package com.mannvaasam.model; import jakarta.persistence.*; import java.time.*;
+@Entity @Table(name="wishlists",uniqueConstraints=@UniqueConstraint(columnNames={"buyer_id","product_id"}))
+public class Wishlist { @Id @GeneratedValue(strategy=GenerationType.IDENTITY) public Long id; @ManyToOne(optional=false) public User buyer; @ManyToOne(optional=false) public Product product; public Instant createdAt=Instant.now(); }
