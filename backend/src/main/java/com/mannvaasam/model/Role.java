@@ -1,0 +1,1 @@
+package com.mannvaasam.model; public enum Role { BUYER, SELLER, ADMIN }
