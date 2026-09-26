@@ -1,0 +1,1 @@
+package com.mannvaasam.controller; import com.mannvaasam.model.*;import com.mannvaasam.repo.*;import org.springframework.web.bind.annotation.*;import java.util.*; @RestController @RequestMapping("/api/categories") public class CategoryController{final CategoryRepository r;CategoryController(CategoryRepository r){this.r=r;}@GetMapping List<Category> all(){return r.findAll();}}
