@@ -1,0 +1,2 @@
+# Google hosting
+Use Firebase Hosting for React, Cloud Run for Spring Boot and FastAPI, Cloud SQL for MySQL, Secret Manager for credentials and Cloud Storage for product media. Enable required APIs, billing and IAM using your own Google account. Configure Cloud SQL connectivity, secrets, CORS, HTTPS/custom DNS, logging and monitoring. This repository does not claim deployment. Your Google authentication and production billing/domain actions are required.
