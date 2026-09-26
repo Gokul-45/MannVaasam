@@ -1,0 +1,1 @@
+package com.mannvaasam.repo; import com.mannvaasam.model.*; import org.springframework.data.jpa.repository.*; import java.util.*; public interface UserRepository extends JpaRepository<User,Long>{Optional<User> findByEmail(String email);}
