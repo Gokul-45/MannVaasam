@@ -1,0 +1,2 @@
+package com.mannvaasam.model; import jakarta.persistence.*;
+@Entity @Table(name="addresses") public class Address { @Id @GeneratedValue(strategy=GenerationType.IDENTITY) public Long id; @ManyToOne(optional=false) public User user; public String addressLine,city,state,pincode; public Double latitude,longitude; public boolean primaryAddress; }
