@@ -1,3 +1,12 @@
 package com.mannvaasam.security;
-import org.springframework.context.annotation.*;import org.springframework.security.config.annotation.web.builders.HttpSecurity;import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;import org.springframework.security.crypto.password.PasswordEncoder;import org.springframework.security.web.SecurityFilterChain;import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;import java.util.*;
-@Configuration public class SecurityConfig{@Bean PasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();}@Bean JwtAuthFilter jwtAuthFilter(JwtService j){return new JwtAuthFilter(j);}@Bean SecurityFilterChain filter(HttpSecurity h,JwtAuthFilter f)throws Exception{return h.csrf(c->c.disable()).cors(c->c.configurationSource(r->{var x=new org.springframework.web.cors.CorsConfiguration();x.setAllowedOriginPatterns(List.of("*"));x.setAllowedMethods(List.of("*"));x.setAllowedHeaders(List.of("*"));return x;})).addFilterBefore(f,UsernamePasswordAuthenticationFilter.class).authorizeHttpRequests(a->a.requestMatchers("/api/auth/**","/api/products/**","/api/categories/**","/swagger-ui/**","/v3/api-docs/**").permitAll().anyRequest().authenticated()).build();}}
+import org.springframework.context.annotation.*; import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity; import org.springframework.security.config.annotation.web.builders.HttpSecurity; import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; import org.springframework.security.crypto.password.PasswordEncoder; import org.springframework.security.web.SecurityFilterChain; import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter; import java.util.*;
+@Configuration @EnableMethodSecurity
+public class SecurityConfig {
+ @Bean PasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();}
+ @Bean JwtAuthFilter jwtAuthFilter(JwtService j){return new JwtAuthFilter(j);}
+ @Bean SecurityFilterChain filter(HttpSecurity h,JwtAuthFilter f)throws Exception{
+  return h.csrf(c->c.disable()).cors(c->c.configurationSource(r->{var x=new org.springframework.web.cors.CorsConfiguration();x.setAllowedOriginPatterns(List.of("*"));x.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));x.setAllowedHeaders(List.of("*"));x.setAllowCredentials(false);return x;}))
+   .addFilterBefore(f,UsernamePasswordAuthenticationFilter.class)
+   .authorizeHttpRequests(a->a.requestMatchers("/api/auth/**","/api/products/**","/api/categories/**","/swagger-ui/**","/v3/api-docs/**").permitAll().anyRequest().authenticated()).build();
+ }
+}
