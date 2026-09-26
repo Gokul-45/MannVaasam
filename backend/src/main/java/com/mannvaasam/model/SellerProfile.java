@@ -1,0 +1,2 @@
+package com.mannvaasam.model; import jakarta.persistence.*;
+@Entity @Table(name="seller_profiles") public class SellerProfile { @Id @GeneratedValue(strategy=GenerationType.IDENTITY) public Long id; @OneToOne(optional=false) public User user; public String businessName,address,contact,supportedPincodes; public Double latitude,longitude,deliveryRadiusKm; public Integer deliveryDays=3; }
