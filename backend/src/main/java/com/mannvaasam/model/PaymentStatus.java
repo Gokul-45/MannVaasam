@@ -1,0 +1,1 @@
+package com.mannvaasam.model; public enum PaymentStatus { PENDING, PAID, FAILED, REFUNDED, NOT_REQUIRED }
