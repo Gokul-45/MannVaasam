@@ -1,0 +1,3 @@
+package com.mannvaasam.controller;
+import com.mannvaasam.model.*;import com.mannvaasam.repo.*;import org.springframework.data.domain.*;import org.springframework.web.bind.annotation.*;
+@RestController @RequestMapping("/api/products") public class ProductController {final ProductRepository r;ProductController(ProductRepository r){this.r=r;} @GetMapping Page<Product> list(@RequestParam(defaultValue="0")int page,@RequestParam(defaultValue="12")int size){return r.findByActiveTrue(PageRequest.of(page,size,Sort.by(Sort.Direction.DESC,"createdAt")));} @GetMapping("/{id}") Product one(@PathVariable Long id){return r.findById(id).orElseThrow();}}
