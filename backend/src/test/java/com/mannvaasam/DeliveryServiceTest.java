@@ -1,0 +1,1 @@
+package com.mannvaasam;import com.mannvaasam.service.DeliveryService;import org.junit.jupiter.api.Test;import static org.junit.jupiter.api.Assertions.*;class DeliveryServiceTest{@Test void zero(){assertEquals(0,new DeliveryService(null).distanceKm(11.9,79.8,11.9,79.8),.001);}@Test void far(){assertTrue(new DeliveryService(null).distanceKm(11.9,79.8,12.9,79.8)>100);}}
