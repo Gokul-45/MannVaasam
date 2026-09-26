@@ -1,0 +1,1 @@
+package com.mannvaasam.repo; import com.mannvaasam.model.*; import org.springframework.data.jpa.repository.*; import java.util.*; public interface WishlistRepository extends JpaRepository<Wishlist,Long>{List<Wishlist> findByBuyerOrderByCreatedAtDesc(User u);Optional<Wishlist> findByBuyerAndProduct(User u,Product p);}
