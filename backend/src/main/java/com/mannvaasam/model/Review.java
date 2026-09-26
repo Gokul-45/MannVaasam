@@ -1,0 +1,3 @@
+package com.mannvaasam.model; import jakarta.persistence.*; import java.time.*;
+@Entity @Table(name="reviews",uniqueConstraints=@UniqueConstraint(columnNames={"buyer_id","product_id"}))
+public class Review { @Id @GeneratedValue(strategy=GenerationType.IDENTITY) public Long id; @ManyToOne(optional=false) public User buyer; @ManyToOne(optional=false) public Product product; @Column(nullable=false) public Integer rating; @Column(length=2000) public String comment; public boolean approved=true; public Instant createdAt=Instant.now(); }
