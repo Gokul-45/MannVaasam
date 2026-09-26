@@ -1,0 +1,5 @@
+package com.mannvaasam.controller;
+import com.mannvaasam.model.*; import com.mannvaasam.repo.*; import com.mannvaasam.service.CurrentUserService; import org.springframework.web.bind.annotation.*; import java.util.*;
+@RestController @RequestMapping("/api/products/{productId}/reviews") public class ReviewController { final ProductRepository products; final ReviewRepository reviews; final CurrentUserService current; public ReviewController(ProductRepository p,ReviewRepository r,CurrentUserService c){products=p;reviews=r;current=c;}
+@GetMapping public List<Review> list(@PathVariable Long productId){return reviews.findByProductAndApprovedTrueOrderByCreatedAtDesc(products.findById(productId).orElseThrow());}
+@PostMapping public Review add(@PathVariable Long productId,@RequestBody Review in){Product p=products.findById(productId).orElseThrow();if(in.rating==null||in.rating<1||in.rating>5)throw new IllegalArgumentException("Rating must be 1-5");Review r=reviews.findByBuyerAndProduct(current.get(),p).orElseGet(Review::new);r.buyer=current.get();r.product=p;r.rating=in.rating;r.comment=in.comment;r.approved=true;return reviews.save(r);}}
